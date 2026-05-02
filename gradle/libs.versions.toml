@@ -24,10 +24,14 @@ activityCompose = "1.10.0"
 # Compose BOM — aligns all androidx.compose.* library versions together
 # (so I don't have to manually manage version of all android compose libs)
 composeBom = "2024.12.01"
+# Necessary for `Theme.Material3.DayNight.*` themes
+google-material = "1.13.0"
 
 # NOTE: This section lists the libraries to install.
 # .. Find official libs at <https://maven.google.com/web/index.html>
 # .. Find more JetpackCompose libs at <https://developer.android.com/jetpack/androidx/explorer>
+# NOTE: Some libs like `androidx.compose.ui` don't have a version because its parent package
+# `androidx.compose` has.
 [libraries]
 # Provides ComponentActivity.setContent{} to host Compose UI in an Activity
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
@@ -35,11 +39,13 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 # Layout inspector and interactive preview support (debug builds only)
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-# @Preview annotation and preview renderer used in the IDE
-# FIXME: do I need that?
-androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 # Material3 components (Text, Icon, Button, etc.) and built-in icon set
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+# Necessary for `Theme.Material3.DayNight.*` themes
+google-material = { group = "com.google.android.material", name = "material", version.ref = "google-material" }
+
+# Timber — lightweight logging library for Android
+timber = { group = "com.jakewharton.timber", name = "timber", version = "5.0.1" }
 
 # NOTE: This section lists Gradle build plugins.
 [plugins]

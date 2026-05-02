@@ -8,7 +8,7 @@
 //
 // MAINTAINANCE:
 // Update compileSdk/targetSdk yearly.
-// Add new dependencies in the dependencies {} block and their versions in libs.versions.toml.
+// Add new dependencies in the `dependencies {}` block and their versions in `libs.versions.toml`.
 
 plugins {
     alias(libs.plugins.android.application)
@@ -17,11 +17,11 @@ plugins {
 }
 
 android {
-    namespace = "dev.bew.myenergybar"
+    namespace = "bew.helloworld"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "dev.bew.myenergybar"
+        applicationId = "bew.helloworld"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -39,13 +39,17 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
 dependencies {
+    // note: names in `[libraries]` section in `libs.versions.toml` are accessible directly in
+    // `libs.*`. (e.g. `foo-bar-baz = ...` in the toml file become `libs.foo.bar.baz` here)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material3)
+    implementation(libs.google.material)
     debugImplementation(libs.androidx.ui.tooling)
-    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.timber)
 }

@@ -11,8 +11,11 @@
   MAINTAINANCE: Rarely changed.
   Edge-to-edge apps (using enableEdgeToEdge()) mostly leave this alone.
   note: If you need a specific status bar color before Compose draws, set `windowStatusBarColor` here.
+
+  NOTE: The parent theme must be DayNight (not Light/Dark) so the system dark mode setting is
+  respected before Compose draws anything.
 -->
 <resources>
     <!-- Base application theme -->
-    <style name="Theme.MyEnergyBar" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.MyAppTheme" parent="Theme.Material3.DayNight.NoActionBar" />
 </resources>

@@ -1,10 +1,20 @@
-# EnergyBar
+# Hello World app
 
 A simple Android app built with Jetpack Compose.
+
+Features:
+- Full Nix-based dev environment
+- `just`-based project helpers to build/install/run/watch the app/watch logs
+- Auto dark/light colorscheme based on the system
+- Logging setup using `Timber`, initialized early
+- Setup with `MainActivity`, `MainScreen`, and a few components
+- A `SimpleCounter` component with _internal_ state
+- Comments everywhere explaining things
 
 ## Requirements
 
 - Nix (with flakes enabled)
+- An Android phone for testing (See [./DEVICE_SETUP.md](./DEVICE_SETUP.md))
 
 ## Setup
 
@@ -15,50 +25,31 @@ nix develop
 ## Build & Run
 
 ```sh
-just build    # build debug APK
-just install  # install on connected device
+just build    # build (debug APK)
+just install  # (build+)install on connected device
+just run      # Start the app on the connected device
 ```
 
-## Install on device
+## Virtual display on the computer using [`scrcpy`][scrcpy]
 
-### Wireless - pairing (first time only)
+[scrcpy]: https://github.com/Genymobile/scrcpy
 
-1. Enable **Wireless debugging**: Settings → Developer options → Wireless debugging
-2. Tap **Pair device with pairing code** — note the IP:port and 6-digit code shown
-3. On your machine:
-   ```sh
-   adb pair <ip>:<pairing-port>
-   # Enter the 6-digit code when prompted
-   ```
+Using [`scrcpy`][scrcpy] we can create a virtual display on the phone (separate from its physical
+screen), which opens as a dedicated window on your computer.
 
-   > [!WARNING]
-   > Note that the port for `adb pair` is different from the port for `adb connect` !
+```sh
+# Start the virtual display
+just start-ui
+# Note the DISPLAY_ID at the end of the log line about the new display:
+# `[server] INFO: New display: 1116x2484/372 (id=33)` 👉 DISPLAY_ID=33
 
-### Wireless - connect & install
+# Now you can run the app on the virtual display
+just run DISPLAY_ID
+# Or (build+)install+run
+just install-run DISPLAY_ID
+```
+Example for `id=5`: `just run 5`
 
 > [!NOTE]
-> The device must be paired first! See above.
-
-1. In **Wireless debugging** settings page, note the `IP:port` on the main screen.
-2. Connect:
-   ```sh
-   adb connect <ip>:<port>
-   ```
-3. Make sure the device appears in the list of devices: `adb devices`
-4. Run `just install`
-
-### USB - connect & install
-
-1. Enable **USB debugging**: Settings → Developer options → USB debugging
-2. Connect via USB and accept the prompt on your phone
-3. Make sure the device appears in the list of devices: `adb devices`
-4. Run `just install`
-
-### Disable Play Protect popup
-
-When installing the app, your phone may ask to send the app to Play Protect for scanning.
-
-You can permanently disable this prompt (refusing it) using:
-```sh
-adb shell settings put global package_verifier_user_consent -1
-```
+> If the virtual display goes black, close the window & `just start-ui` again.
+> (see notes in `justfile`)

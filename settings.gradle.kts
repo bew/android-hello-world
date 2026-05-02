@@ -25,5 +25,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MyEnergyBar"
+rootProject.name = "HelloWorld"
 include(":app")

@@ -1,4 +1,4 @@
-[*.kt]
+[*.{kt,kts}]
 indent_style = space
 indent_size = 4
 # --- KtLint rules (works for ktlint, but not for kotlin-lsp 🙁)

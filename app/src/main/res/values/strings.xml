@@ -11,5 +11,5 @@
   (e.g. res/values-fr/strings.xml for French)
 -->
 <resources>
-    <string name="app_name">My Energy Bar!</string>
+    <string name="app_name">Hello World!</string>
 </resources>

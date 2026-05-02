@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   WHAT:
-  Declares the app to the Android OS — package identity, the MainActivity as
-  the launcher entry point, the app-wide theme, and any required permissions.
+  This is a sort of component registry, it declares the app and its components to Android.
+  Many entries here points to an actual class that Android needs to instantiate at runtime.
+
+  For example: package identity, the custom Application class (MyApp), the MainActivity as the
+  launcher entry point, the app-wide theme, any required permissions, ....
 
   NEEDED: Yes — mandatory.
   Android won't install the app without it.
 
   MAINTAINANCE:
-  Add <uses-permission> tags when you need system features (camera, internet, etc.).
-  Register new Activity, Service, or BroadcastReceiver components here.
+  Register new Activity, Service, or other components as you add new ones to the app.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyEnergyBar">
+        android:theme="@style/Theme.MyAppTheme">
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.MyEnergyBar">
+            android:theme="@style/Theme.MyAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
