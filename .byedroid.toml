@@ -1,0 +1,7 @@
+# Config file for https://github.com/cesarferreira/byedroid
+
+# Tag substrings — line must match at least one if non-empty
+log_filters = ["MYAPP"]
+
+# Extra arguments passed to `scrcpy`
+scrcpy_args = ["--new-display"] # TODO: add --keep-awake when available in my env!

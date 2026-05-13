@@ -44,6 +44,7 @@
           # note: The LSP is quite slow to start, easily 30s before first proof of life..
 
           pkgs.scrcpy
+          (pkgs.callPackage ./nix/byedroid.nix {})
         ];
 
         env.ANDROID_HOME = "${androidSdk.androidsdk}/libexec/android-sdk";
