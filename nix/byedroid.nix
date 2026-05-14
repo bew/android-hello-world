@@ -7,26 +7,18 @@
   android-tools,
 }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage (finalAttrs: {
   pname = "byedroid";
-  version = "0.7.0";
+  version = "0.8.0";
 
-  # src = fetchFromGitHub {
-  #   owner = "cesarferreira";
-  #   repo = "byedroid";
-  #   rev = "v${version}";
-  #   hash = "sha256-rQOZljvxEAvng7WHBeKi9BsySXI3XzlnHExWDIW3PCM=";
-  # };
-
-  # Source with <cesarferreira/byedroid#PR4> (mine!)
   src = fetchFromGitHub {
-    owner = "bew";
+    owner = "cesarferreira";
     repo = "byedroid";
-    rev = "fallback-to-gradle";
-    hash = "sha256-jKukThkAfWSgONMFDztGSlJTr2nTUDowjZw0FNNqtQw=";
+    rev = "v${finalAttrs.version}";
+    hash = "sha256-sPfi0C67672E+F/T2ZLUigWqIITexYvSNnNuZ7OelAo=";
   };
 
-  cargoHash = "sha256-BqcqcVBV7exOFDGAYjEUySImoPHFU2jTdsyywKGb+JA=";
+  cargoHash = "sha256-E6AvuPbfWrdq13zHFGlykK+vQZCZBirwquJeu1uT0ao=";
 
   nativeBuildInputs = [ makeWrapper ];
   # NOTE: We add additional tools to PATH, as suffix to allow environment-specific overrides
@@ -51,4 +43,4 @@ rustPlatform.buildRustPackage rec {
     mainProgram = "bd";
     platforms = platforms.linux ++ platforms.darwin;
   };
-}
+})
